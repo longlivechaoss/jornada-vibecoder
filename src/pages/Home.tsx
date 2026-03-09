@@ -63,35 +63,35 @@ export function Home() {
         </p>
       </div>
 
-      {/* Progress Statistics - mobile first grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 md:mb-10">
-        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 min-h-[72px] sm:min-h-0">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
-            <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500" />
+      {/* Progress Statistics - 3 colunas no mobile, layout horizontal no desktop */}
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8 md:mb-10">
+        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg sm:rounded-2xl p-2.5 sm:p-5 flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-1 sm:gap-4">
+          <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-emerald-500/10 flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-4 h-4 sm:w-6 sm:h-6 text-emerald-500" />
           </div>
           <div className="min-w-0">
-            <div className="text-xl sm:text-2xl font-bold text-white tabular-nums">{completedTopicsCount}</div>
-            <div className="text-xs sm:text-sm text-zinc-400 font-medium leading-tight">Tópicos concluídos</div>
+            <div className="text-base sm:text-2xl font-bold text-white tabular-nums">{completedTopicsCount}</div>
+            <div className="text-[10px] sm:text-sm text-zinc-400 font-medium leading-tight line-clamp-2 sm:line-clamp-none">Tópicos concluídos</div>
           </div>
         </div>
 
-        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 min-h-[72px] sm:min-h-0">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-violet-500/10 flex items-center justify-center shrink-0">
-            <Layers className="w-5 h-5 sm:w-6 sm:h-6 text-violet-400" />
+        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg sm:rounded-2xl p-2.5 sm:p-5 flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-1 sm:gap-4">
+          <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-violet-500/10 flex items-center justify-center shrink-0">
+            <Layers className="w-4 h-4 sm:w-6 sm:h-6 text-violet-400" />
           </div>
           <div className="min-w-0">
-            <div className="text-xl sm:text-2xl font-bold text-white tabular-nums">{modulesInProgress}</div>
-            <div className="text-xs sm:text-sm text-zinc-400 font-medium leading-tight">Módulos em andamento</div>
+            <div className="text-base sm:text-2xl font-bold text-white tabular-nums">{modulesInProgress}</div>
+            <div className="text-[10px] sm:text-sm text-zinc-400 font-medium leading-tight line-clamp-2 sm:line-clamp-none">Módulos em andamento</div>
           </div>
         </div>
 
-        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 min-h-[72px] sm:min-h-0">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
-            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg sm:rounded-2xl p-2.5 sm:p-5 flex flex-col items-center text-center sm:flex-row sm:items-center sm:text-left gap-1 sm:gap-4">
+          <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
+            <BookOpen className="w-4 h-4 sm:w-6 sm:h-6 text-blue-400" />
           </div>
           <div className="min-w-0">
-            <div className="text-xl sm:text-2xl font-bold text-white tabular-nums">{totalTopics}</div>
-            <div className="text-xs sm:text-sm text-zinc-400 font-medium leading-tight">Tópicos disponíveis</div>
+            <div className="text-base sm:text-2xl font-bold text-white tabular-nums">{totalTopics}</div>
+            <div className="text-[10px] sm:text-sm text-zinc-400 font-medium leading-tight line-clamp-2 sm:line-clamp-none">Tópicos disponíveis</div>
           </div>
         </div>
       </div>
