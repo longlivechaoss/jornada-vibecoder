@@ -1,31 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { setAuthState } from "@/utils/auth";
-import { Eye, EyeOff, ArrowLeft } from "lucide-react";
-
-type Screen = "welcome" | "login";
 
 export function LoginPage() {
-  const [screen, setScreen] = useState<Screen>("welcome");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const trimmedEmail = email.trim();
-    if (!trimmedEmail || !password) {
-      return;
-    }
-
-    setAuthState(trimmedEmail);
-    navigate("/", { replace: true });
-  };
 
   return (
     <div className="relative min-h-screen bg-[#0d0d1a] flex flex-col items-center overflow-hidden">
@@ -83,23 +61,10 @@ export function LoginPage() {
             boxShadow: "0 -8px 60px rgba(109,40,217,0.5)",
           }}
         >
-          {screen === "welcome" ? (
-            <WelcomeCard
-              onLogin={() => setScreen("login")}
-              onSignup={() => setScreen("login")}
-            />
-          ) : (
-            <LoginFormCard
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              showPassword={showPassword}
-              setShowPassword={setShowPassword}
-              onSubmit={handleSubmit}
-              onBack={() => setScreen("welcome")}
-            />
-          )}
+          <WelcomeCard
+            onLogin={() => navigate("/enter")}
+            onSignup={() => navigate("/enter")}
+          />
         </div>
       </div>
     </div>
@@ -141,126 +106,6 @@ function WelcomeCard({ onLogin, onSignup }: WelcomeCardProps) {
           Cadastre-se
         </Button>
       </div>
-    </div>
-  );
-}
-
-/* ─── Login form (screen 2) ─── */
-interface LoginFormCardProps {
-  email: string;
-  setEmail: (v: string) => void;
-  password: string;
-  setPassword: (v: string) => void;
-  showPassword: boolean;
-  setShowPassword: (v: boolean) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onBack: () => void;
-}
-
-function LoginFormCard({
-  email,
-  setEmail,
-  password,
-  setPassword,
-  showPassword,
-  setShowPassword,
-  onSubmit,
-  onBack,
-}: LoginFormCardProps) {
-  return (
-    <div className="flex flex-col gap-6">
-      <button
-        type="button"
-        onClick={onBack}
-        className="self-start flex items-center gap-2 text-purple-300 hover:text-white transition-colors text-sm font-medium"
-        aria-label="Voltar"
-      >
-        <ArrowLeft className="w-5 h-5" />
-        Voltar
-      </button>
-
-      <div className="flex flex-col gap-1">
-        <h2 className="text-white font-extrabold text-2xl leading-tight">
-          Entre na sua conta
-        </h2>
-        <p className="text-purple-300 text-sm leading-relaxed">
-          Utilize seu nome de usuário e senha cadastrada
-        </p>
-      </div>
-
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        <div className="space-y-1.5">
-          <Label
-            htmlFor="username"
-            className="text-purple-200 text-xs font-semibold uppercase tracking-wider"
-          >
-            Usuário
-          </Label>
-          <Input
-            id="username"
-            type="text"
-            autoComplete="username"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="seu_usuario"
-            className="w-full px-4 py-3.5 rounded-2xl text-white placeholder:text-purple-400/80 bg-white/10 border-white/15 focus-visible:ring-2 focus-visible:ring-purple-300 focus-visible:border-purple-300/50"
-          />
-        </div>
-
-        <div className="space-y-1.5">
-          <Label
-            htmlFor="password"
-            className="text-purple-200 text-xs font-semibold uppercase tracking-wider"
-          >
-            Senha
-          </Label>
-          <div className="relative">
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full px-4 py-3.5 pr-12 rounded-2xl text-white placeholder:text-purple-400/80 bg-white/10 border-white/15 focus-visible:ring-2 focus-visible:ring-purple-300 focus-visible:border-purple-300/50"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-purple-300 hover:text-white transition-colors"
-              aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-            >
-              {showPassword ? (
-                <EyeOff className="w-5 h-5" />
-              ) : (
-                <Eye className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        <div className="flex justify-end -mt-1">
-          <button
-            type="button"
-            className="text-purple-300 text-xs hover:text-white transition-colors underline underline-offset-2"
-          >
-            Esqueceu a senha?
-          </button>
-        </div>
-
-        <Button
-          type="submit"
-          className="w-full py-4 mt-1 rounded-2xl font-bold text-purple-900 text-base bg-white hover:bg-zinc-100"
-        >
-          Entrar
-        </Button>
-      </form>
-
-      <p className="text-center text-xs text-purple-300/90 mt-2">
-        <Link to="/" className="underline underline-offset-2 hover:text-white">
-          Página inicial
-        </Link>
-      </p>
     </div>
   );
 }

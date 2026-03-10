@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { ModulePage } from "./pages/ModulePage";
 import { TopicPage } from "./pages/TopicPage";
 import { LoginPage } from "./pages/LoginPage";
+import { EnterPage } from "./pages/EnterPage";
 import { getAuthState } from "@/utils/auth";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
@@ -21,6 +22,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/enter" element={<EnterPage />} />
 
         <Route
           path="/"
