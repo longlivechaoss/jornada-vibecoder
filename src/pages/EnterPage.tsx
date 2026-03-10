@@ -39,8 +39,8 @@ export function EnterPage() {
         </p>
       </div>
 
-      {/* Card roxo — mais espaço acima, bordas mais arredondadas */}
-      <div className="relative z-10 w-full flex-shrink-0 flex justify-center max-w-md mx-auto w-full px-0 mt-10 sm:mt-12">
+      {/* Card roxo — posicionado mais acima para deixar espaço abaixo (Google/Apple) */}
+      <div className="relative z-10 w-full flex-shrink-0 flex justify-center max-w-md mx-auto w-full px-0 mt-4 sm:mt-6">
         <div
           className="w-full rounded-t-[56px] px-8 sm:px-10 pt-12 sm:pt-14 pb-20 sm:pb-24 shadow-2xl min-h-[55vh] sm:min-h-[52vh]"
           style={{
