@@ -94,14 +94,14 @@ function WelcomeCard({ onLogin, onSignup }: WelcomeCardProps) {
         <Button
           type="button"
           onClick={onLogin}
-          className="w-full py-5 rounded-2xl font-bold text-white text-base bg-[rgba(15,10,35,0.85)] border border-white/20 hover:bg-[rgba(15,10,35,0.95)] hover:border-white/25 backdrop-blur-md transition-colors min-h-[3.75rem]"
+          className="w-full py-5 rounded-full font-bold text-white text-base bg-[rgba(15,10,35,0.85)] border border-white/20 hover:bg-[rgba(15,10,35,0.95)] hover:border-white/25 backdrop-blur-md transition-colors min-h-[3.75rem]"
         >
           Login
         </Button>
         <Button
           type="button"
           onClick={onSignup}
-          className="w-full h-14 rounded-2xl font-bold text-purple-900 text-base bg-white hover:bg-zinc-100 transition-colors"
+          className="w-full h-14 rounded-full font-bold text-purple-900 text-base bg-white hover:bg-zinc-100 transition-colors"
         >
           Cadastre-se
         </Button>

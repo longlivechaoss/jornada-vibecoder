@@ -22,41 +22,41 @@ export function EnterPage() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-zinc-100">
-      {/* Parte superior clara com linhas roxas decorativas */}
+    <div className="relative min-h-screen flex flex-col bg-white">
+      {/* Parte superior clara com linhas roxas decorativas (Figma: opacity 40%) */}
       <div
-        className="absolute inset-0 bg-no-repeat bg-cover bg-center opacity-30 pointer-events-none"
+        className="absolute inset-0 bg-no-repeat bg-cover bg-center opacity-40 pointer-events-none"
         style={{ backgroundImage: "url('/bg-lines.png.png')" }}
         aria-hidden
       />
 
-      <div className="relative z-10 flex flex-1 flex-col items-center px-4 pt-12 pb-4 max-w-md mx-auto w-full">
-        <h1 className="text-violet-900 font-extrabold text-3xl sm:text-4xl text-center leading-tight">
+      {/* Header: título e subtítulo — alinhados à esquerda, mesmo padding do card */}
+      <div className="relative z-10 flex flex-1 flex-col items-start w-full px-8 pt-[110px] pb-2">
+        <h1 className="text-[34px] font-extrabold text-left leading-normal text-[#7f22fd] w-full">
           Entre na sua conta
         </h1>
-        <p className="text-violet-700 text-base sm:text-lg text-center mt-3 max-w-[320px]">
+        <p className="text-base font-extrabold text-[#7f22fd] text-left leading-normal mt-4 w-full">
           Utilize seu nome de usuário e senha cadastrada
         </p>
       </div>
 
-      {/* Card roxo — posicionado mais acima para deixar espaço abaixo (Google/Apple) */}
-      <div className="relative z-10 w-full flex-shrink-0 flex justify-center max-w-md mx-auto w-full px-0 mt-4 sm:mt-6">
+      {/* Card roxo — Figma: top 245px, h 599px, rounded-t 55px, gradient #7f22fd → #3f1479 */}
+      <div className="relative z-10 w-full flex-shrink-0 px-0 mt-6">
         <div
-          className="w-full rounded-t-[56px] px-8 sm:px-10 pt-12 sm:pt-14 pb-20 sm:pb-24 shadow-2xl min-h-[55vh] sm:min-h-[52vh]"
+          className="w-full rounded-t-[55px] px-8 pt-11 pb-20 shadow-2xl min-h-[599px] sm:min-h-[52vh]"
           style={{
-            background:
-              "linear-gradient(180deg, #8B3DFF 0%, #5B21B6 100%)",
-            boxShadow: "0 -8px 60px rgba(109,40,217,0.5)",
+            background: "linear-gradient(180deg, #7f22fd 0%, #3f1479 100%)",
+            boxShadow: "0 -8px 60px rgba(127,34,253,0.4)",
           }}
         >
-          <form onSubmit={handleSubmit} className="flex flex-col gap-7">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <Input
               type="text"
               placeholder="Usuário"
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-14 sm:h-[3.75rem] px-6 rounded-full text-white placeholder:text-purple-300/90 border-white/15 focus-visible:ring-2 focus-visible:ring-purple-300 text-base bg-violet-950/50"
+              className="w-full h-[63px] px-12 rounded-[31.5px] text-white placeholder-white/40 text-base font-extrabold border-0 bg-[rgba(34,34,34,0.25)] focus-visible:ring-2 focus-visible:ring-white/30"
             />
             <Input
               type="password"
@@ -64,13 +64,13 @@ export function EnterPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-14 sm:h-[3.75rem] px-6 rounded-full text-white placeholder:text-purple-300/90 border-white/15 focus-visible:ring-2 focus-visible:ring-purple-300 text-base bg-violet-950/50"
+              className="w-full h-[63px] px-12 rounded-[31.5px] text-white placeholder-white/40 text-base font-extrabold border-0 bg-[rgba(34,34,34,0.25)] focus-visible:ring-2 focus-visible:ring-white/30"
             />
 
-            <div className="flex justify-end pt-1">
+            <div className="flex justify-end">
               <button
                 type="button"
-                className="text-purple-200 text-sm hover:text-white transition-colors underline underline-offset-2"
+                className="text-white text-xs font-medium hover:underline"
               >
                 Esqueceu a senha?
               </button>
@@ -78,13 +78,13 @@ export function EnterPage() {
 
             <Button
               type="submit"
-              className="w-full min-h-[4rem] py-6 rounded-full font-bold text-purple-900 text-base bg-white hover:bg-zinc-100 mt-2"
+              className="w-full h-[66px] rounded-[33px] font-extrabold text-[16px] text-[#222] bg-white hover:bg-gray-100"
             >
               Entrar
             </Button>
           </form>
 
-          <p className="text-center text-xs text-purple-200/90 mt-6">
+          <p className="text-center text-xs text-white/80 mt-6">
             <Link
               to="/login"
               className="underline underline-offset-2 hover:text-white"
