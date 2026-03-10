@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,11 +12,23 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, ArrowRight } from "lucide-react";
+import { setAuthState } from "@/utils/auth";
 
 export function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Nenhuma autenticação real por enquanto.
+
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
+      return;
+    }
+
+    setAuthState(trimmedEmail);
+    navigate("/", { replace: true });
   };
 
   return (
@@ -61,6 +73,8 @@ export function LoginPage() {
                   placeholder="voce@exemplo.com"
                   autoComplete="email"
                   className="bg-zinc-900/60 border-zinc-800 text-zinc-100 placeholder:text-zinc-500 focus-visible:ring-violet-500/60"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
 
@@ -82,6 +96,8 @@ export function LoginPage() {
                     type="password"
                     autoComplete="current-password"
                     className="bg-zinc-900/60 border-zinc-800 text-zinc-100 placeholder:text-zinc-500 pr-10 focus-visible:ring-violet-500/60"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
                   />
                   <Lock className="w-4 h-4 text-zinc-500 absolute right-3 top-1/2 -translate-y-1/2" />
                 </div>
@@ -115,7 +131,7 @@ export function LoginPage() {
               >
                 página inicial
               </Link>{" "}
-              sem login.
+              depois de entrar.
             </p>
           </CardFooter>
         </Card>

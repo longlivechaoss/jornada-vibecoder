@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { mockData } from "../data/mockData";
 import { ModuleCard } from "../components/ModuleCard";
 import { useStudyProgress } from "../hooks/useStudyProgress";
 import { ProgressBar } from "../components/ProgressBar";
 import { PlayCircle, ArrowRight, Search, BookOpen, CheckCircle2, Layers, Clock } from "lucide-react";
+import { clearAuthState, getAuthState } from "@/utils/auth";
 
 export function Home() {
   const { isCompleted, completedTopics } = useStudyProgress();
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+  const { userEmail } = getAuthState();
 
   const hasProgress = completedTopics.length > 0;
 
@@ -51,16 +54,39 @@ export function Home() {
   }).length;
   const globalProgressPercentage = totalTopics > 0 ? Math.round((completedTopicsCount / totalTopics) * 100) : 0;
 
+  const handleLogout = () => {
+    clearAuthState();
+    navigate("/login", { replace: true });
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
       {/* Hero Section */}
-      <div className="mb-8 sm:mb-10 md:mb-12">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-violet-400 to-fuchsia-500 tracking-tight mb-3 sm:mb-4">
-          Jornada VIBECODER
-        </h1>
-        <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed">
-          Escolha um módulo para continuar estudando e aprimorar suas habilidades.
-        </p>
+      <div className="mb-8 sm:mb-10 md:mb-12 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-violet-400 to-fuchsia-500 tracking-tight mb-3 sm:mb-4">
+            Jornada VIBECODER
+          </h1>
+          <p className="text-base sm:text-lg text-zinc-400 max-w-2xl leading-relaxed">
+            Escolha um módulo para continuar estudando e aprimorar suas habilidades.
+          </p>
+        </div>
+
+        {userEmail && (
+          <div className="flex items-center justify-end gap-3">
+            <div className="hidden sm:flex flex-col items-end text-right text-xs text-zinc-400">
+              <span className="font-medium text-zinc-200">Conectado</span>
+              <span className="truncate max-w-[180px]">{userEmail}</span>
+            </div>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/70 px-4 py-2 text-xs font-medium text-zinc-200 hover:bg-zinc-800 hover:border-zinc-700 transition-colors"
+            >
+              Sair
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Progress Statistics - 3 colunas no mobile, layout horizontal no desktop */}
